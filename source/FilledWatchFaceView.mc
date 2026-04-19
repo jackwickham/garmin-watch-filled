@@ -8,7 +8,7 @@ import Toybox.Time.Gregorian;
 class FilledWatchFaceView extends WatchUi.WatchFace {
 
     private var _lastSec as Number = -1;
-    private const TIME_FONT = Application.loadResource( Rez.Fonts.PtSans ) as FontResource;
+    private const TIME_FONT = Application.loadResource( Rez.Fonts.NunitoSans ) as FontResource;
     private const BATTERY_WIDTH = 20;
     private const BATTERY_SPACER = 6;
 
