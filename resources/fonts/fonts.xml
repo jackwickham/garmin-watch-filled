@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <fonts>
-        <font id="PtSans" filename="ptsans-bold-80.fnt" />   
-        <font id="NunitoSans" filename="nunito-extrabold-80.fnt" />
+        <font id="NunitoSans80" filename="nunito-extrabold-80.fnt" />
+        <font id="NunitoSans60" filename="nunito-extrabold-60.fnt" />
     </fonts>
 </resources>

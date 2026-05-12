@@ -8,7 +8,8 @@ import Toybox.Time.Gregorian;
 class FilledWatchFaceView extends WatchUi.WatchFace {
 
     private var _lastSec as Number = -1;
-    private const TIME_FONT = Application.loadResource( Rez.Fonts.NunitoSans ) as FontResource;
+    private const TIME_FONT = Application.loadResource( Rez.Fonts.NunitoSans80 ) as FontResource;
+    private const CHARGING_TIME_FONT = Application.loadResource( Rez.Fonts.NunitoSans60 ) as FontResource;
     private const BATTERY_WIDTH = 20;
     private const BATTERY_SPACER = 6;
 
@@ -38,17 +39,28 @@ class FilledWatchFaceView extends WatchUi.WatchFace {
         // Seconds arc
         drawSecondsArc(dc, cx, cy, width, clockTime.sec);
 
-        // Hours
-        var timeFont = TIME_FONT;
-        var hoursHeight = dc.getFontHeight(timeFont);
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy - hoursHeight + 2, timeFont, clockTime.hour.format("%02d"),
-            Graphics.TEXT_JUSTIFY_CENTER);
+        if (System.getSystemStats().charging) {
+            // Hours
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(cx - 5, cy - 34, CHARGING_TIME_FONT, clockTime.hour.format("%02d"),
+                Graphics.TEXT_JUSTIFY_RIGHT);
 
-        // Minutes
-        dc.setColor(0x00AA00, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy - 34, timeFont, clockTime.min.format("%02d"),
-            Graphics.TEXT_JUSTIFY_CENTER);
+            // Minutes
+            dc.setColor(0x00AA00, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(cx + 5, cy - 34, CHARGING_TIME_FONT, clockTime.min.format("%02d"),
+                Graphics.TEXT_JUSTIFY_LEFT);
+        } else {
+            // Hours
+            var hoursHeight = dc.getFontHeight(TIME_FONT);
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(cx, cy - hoursHeight + 2, TIME_FONT, clockTime.hour.format("%02d"),
+                Graphics.TEXT_JUSTIFY_CENTER);
+
+            // Minutes
+            dc.setColor(0x00AA00, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(cx, cy - 34, TIME_FONT, clockTime.min.format("%02d"),
+                Graphics.TEXT_JUSTIFY_CENTER);
+        }
 
         // Date + battery
         var dateFont = Graphics.FONT_TINY;
