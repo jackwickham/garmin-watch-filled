@@ -41,23 +41,23 @@ class FilledWatchFaceView extends WatchUi.WatchFace {
 
         if (System.getSystemStats().charging) {
             // Hours
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(0x00AA00, Graphics.COLOR_TRANSPARENT);
             dc.drawText(cx - 5, cy - 34, CHARGING_TIME_FONT, clockTime.hour.format("%02d"),
                 Graphics.TEXT_JUSTIFY_RIGHT);
 
             // Minutes
-            dc.setColor(0x00AA00, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             dc.drawText(cx + 5, cy - 34, CHARGING_TIME_FONT, clockTime.min.format("%02d"),
                 Graphics.TEXT_JUSTIFY_LEFT);
         } else {
             // Hours
             var hoursHeight = dc.getFontHeight(TIME_FONT);
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(0x00AA00, Graphics.COLOR_TRANSPARENT);
             dc.drawText(cx, cy - hoursHeight + 2, TIME_FONT, clockTime.hour.format("%02d"),
                 Graphics.TEXT_JUSTIFY_CENTER);
 
             // Minutes
-            dc.setColor(0x00AA00, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             dc.drawText(cx, cy - 34, TIME_FONT, clockTime.min.format("%02d"),
                 Graphics.TEXT_JUSTIFY_CENTER);
         }
